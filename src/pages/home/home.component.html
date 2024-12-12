@@ -1,0 +1,21 @@
+@if(auth.isLogged) {
+<section id="actions">
+  <a
+    class="block w-fit ml-auto bg-blue-600 px-6 py-2 rounded-md text-white hover:bg-blue-500"
+    routerLink="/editor/0"
+    >Create product</a
+  >
+</section>
+}
+<section id="products" class="py-6">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
+    @for (product of (data | async); track $index) {
+    <app-product-card
+      [product]="product"
+      (productDeleted)="data = service.all()"
+    />
+    } @empty {
+    <p>No products</p>
+    }
+  </div>
+</section>

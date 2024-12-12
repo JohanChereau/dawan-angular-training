@@ -1,0 +1,102 @@
+<form [formGroup]="form" (submit)="onSubmit()" class="grid gap-4">
+  <label>
+    Name:
+    <input
+      class="form-input"
+      [class.invalid]="isInvalid('name')"
+      type="text"
+      formControlName="name"
+    />
+    @if (hasError('name', 'required')) {
+    <p>Name is required.</p>
+    }
+  </label>
+
+  <label>
+    Description:
+    <textarea
+      class="form-textarea"
+      [class.invalid]="isInvalid('description')"
+      formControlName="description"
+    ></textarea>
+    @if (hasError('description', 'required')) {
+    <p>Description is required.</p>
+    }
+  </label>
+
+  <label>
+    Price:
+    <input
+      class="form-input"
+      [class.invalid]="isInvalid('price')"
+      type="number"
+      formControlName="price"
+    />
+    @if (hasError('price', 'required')) {
+    <p>Price is required.</p>
+    }
+  </label>
+
+  <label>
+    Stock:
+    <input
+      class="form-input"
+      [class.invalid]="isInvalid('stock')"
+      type="number"
+      formControlName="stock"
+    />
+    @if (hasError('stock', 'required')) {
+    <p>Stock is required.</p>
+    }
+  </label>
+
+  <label>
+    Category:
+    <select
+      class="form-select"
+      [class.invalid]="isInvalid('category')"
+      formControlName="category"
+    >
+      <option value="">Select a category</option>
+      @for (category of categories; track $index) {
+      <option [value]="category">{{ category }}</option>
+      }
+    </select>
+    @if (hasError('category', 'required')) {
+    <p>Category is required.</p>
+    }
+  </label>
+
+  <label>
+    Image URL:
+    <input
+      class="form-input"
+      [class.invalid]="isInvalid('imageUrl')"
+      type="url"
+      formControlName="imageUrl"
+    />
+    @if (hasError('imageUrl', 'required')) {
+    <p>Image URL is required.</p>
+    }
+  </label>
+
+  <ul class="actions inline-flex gap-4">
+    <li>
+      <button
+        class="button flex-1 bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded text-center hover:bg-blue-500 transition-colors"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Save
+      </button>
+    </li>
+    <li>
+      <button
+        class="button flex-1 bg-red-600 text-white text-sm font-semibold py-2 px-4 rounded text-center hover:bg-red-500 transition-colors"
+        type="reset"
+      >
+        Reset
+      </button>
+    </li>
+  </ul>
+</form>
